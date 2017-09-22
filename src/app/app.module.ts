@@ -15,6 +15,20 @@ import { DataService } from './data.service';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
+import { GradeComponent } from './grade/grade.component';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { ClassComponent } from './class/class.component';
+import { MajorComponent } from './major/major.component';
+import { InstructorComponent } from './instructor/instructor.component';
+import { MajorClassComponent } from './major-class/major-class.component';
+import { StudentClassComponent } from './student-class/student-class.component';
+import { GradeFormComponent } from './grade-form/grade-form.component';
+import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
+import { ClassFormComponent } from './class-form/class-form.component';
+import { MajorFormComponent } from './major-form/major-form.component';
+import { InstructorFormComponent } from './instructor-form/instructor-form.component';
+import { MajorClassFormComponent } from './major-class-form/major-class-form.component';
+import { StudentClassFormComponent } from './student-class-form/student-class-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +38,21 @@ import { StatusMessageComponent } from './status-message/status-message.componen
     HomeComponent,
     DeleteConfirmComponent,
     StudentFormComponent,
-    StatusMessageComponent
+    StatusMessageComponent,
+    GradeComponent,
+    AssignmentComponent,
+    ClassComponent,
+    MajorComponent,
+    InstructorComponent,
+    MajorClassComponent,
+    StudentClassComponent,
+    GradeFormComponent,
+    AssignmentFormComponent,
+    ClassFormComponent,
+    MajorFormComponent,
+    InstructorFormComponent,
+    MajorClassFormComponent,
+    StudentClassFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li class="active">Assignments</li>
+</ol>
+
+<br/>
+
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<h2>Assignments</h2>
+
+<a class="btn btn-primary" routerLink="/assignment/add">Add Assignment</a>
+
+<table class="table table-bordered" id="dataTable" style="width:100%">
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Student</th>
+    <th>Assignment Number</th>
+    <th>Grade ID</th>
+    <th>Class ID</th>
+    <th>Admin</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let assignment of assignments">
+    <td>{{assignment.assignment_id}}</td>
+    <td>{{assignment?.student?.first_name}}&nbsp;{{assignment?.student?.last_name}}</td>
+    <td>{{assignment?.assignment_nbr}}</td>
+    <td>{{assignment?.grade?.grade}}</td>
+    <td>{{assignment?.course?.subject}}&nbsp;{{assignment.course?.course}}</td>
+    <td class="text-center">
+      <a class="btn btn-primary" [routerLink]="['/assignment/edit/', assignment.assignment_id]">Edit</a>&nbsp;
+      <button (click)="deleteAssignment(assignment.assignment_id)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+</tbody>
+</table>

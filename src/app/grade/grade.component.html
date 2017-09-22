@@ -1,0 +1,32 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li class="active">Grades</li>
+</ol>
+
+<br/>
+
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<h2>Grades</h2>
+
+<a class="btn btn-primary" routerLink="/grade/add">Add Grade</a>
+
+<table class="table table-bordered" id="dataTable" style="width:100%">
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Grade</th>
+    <th>Admin</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let grade of grades">
+    <td>{{grade.grade_id}}</td>
+    <td>{{grade.grade}}</td>
+    <td class="text-center">
+      <a class="btn btn-primary" [routerLink]="['/grade/edit/', grade.grade_id]">Edit</a>&nbsp;
+      <button (click)="deleteGrade(grade.grade_id)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+</tbody>
+</table>

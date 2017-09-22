@@ -1,0 +1,58 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li><a routerLink="/assignment">Assignments</a></li>
+  <li class="active">Manage Assignment</li>
+</ol>
+
+<br/>
+
+<a class="btn btn-primary" routerLink="/assignment">Return to Assignments</a>
+
+<h1>Manage Assignment</h1>
+
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<form novalidate (ngSubmit)="saveAssignment(assignmentForm)"  #assignmentForm="ngForm" class="form-horizontal">
+<input [ngModel]="assignment?.assignment_id" ngModel #assignment_id="ngModel" type="hidden" name="assignment_id">
+<div class="form-group">
+    <label for="student_id" class="col-sm-2 control-label">Student ID</label>
+    <div class="col-sm-10">
+      <select [ngModel]="assignment?.student?.student_id" ngModel #student_id="ngModel" type="text" class="form-control" id="student_id" name="student_id">
+        <option *ngFor="let zeStudent of students" value="{{zeStudent.student_id}}">
+          {{zeStudent.first_name}}&nbsp;{{zeStudent.last_name}}
+        </option>
+      </select>
+    </div>
+  </div>
+<div class="form-group">
+  <label for="assignment_nbr" class="col-sm-2 control-label">Assignment Number</label>
+  <div class="col-sm-10">
+    <input [ngModel]="assignment?.assignment_nbr" ngModel #assignment_nbr="ngModel" type="text" class="form-control" id="assignment_nbr" name="assignment_nbr"  placeholder="Assignment Number" required>
+  </div>
+</div>
+<div class="form-group">
+    <label for="grade_id" class="col-sm-2 control-label">Grade ID</label>
+    <div class="col-sm-10">
+      <select [ngModel]="assignment?.grade?.grade_id" ngModel #grade_id="ngModel" type="text" class="form-control" id="grade_id" name="grade_id">
+        <option *ngFor="let zeGrade of grades" value="{{zeGrade.grade_id}}">
+          {{zeGrade.grade}}
+        </option>
+      </select>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="class_id" class="col-sm-2 control-label">Class ID</label>
+    <div class="col-sm-10">
+      <select [ngModel]="assignment?.course?.class_id" ngModel #class_id="ngModel" type="text" class="form-control" id="class_id" name="class_id">
+        <option *ngFor="let zeClass of classes" value="{{zeClass.class_id}}">
+          {{zeClass.subject}}&nbsp;{{zeClass.course}}
+        </option>
+      </select>
+    </div>
+  </div>
+ <div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</form>

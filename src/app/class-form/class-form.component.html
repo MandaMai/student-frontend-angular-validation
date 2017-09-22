@@ -1,0 +1,44 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li><a routerLink="/class">Classes</a></li>
+  <li class="active">Manage Class</li>
+</ol>
+
+<br/>
+
+<a class="btn btn-primary" routerLink="/class">Return to Classes</a>
+
+<h1>Manage Class</h1>
+
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<form novalidate (ngSubmit)="saveClass(classForm)"  #classForm="ngForm" class="form-horizontal">
+<input [ngModel]="course?.class_id" ngModel #first_name="ngModel" type="hidden" name="class_id">
+<div class="form-group">
+    <label for="instructor_id" class="col-sm-2 control-label">Instructor ID</label>
+    <div class="col-sm-10">
+      <select [ngModel]="course?.instructor?.instructor_id" ngModel #instructor_id="ngModel" type="text" class="form-control" id="instructor_id" name="instructor_id">
+        <option *ngFor="let zeInstructor of instructors" value="{{zeInstructor.instructor_id}}">
+          {{zeInstructor.first_name}}&nbsp;{{zeInstructor.last_name}}
+        </option>
+      </select>
+    </div>
+  </div>
+<div class="form-group">
+  <label for="subject" class="col-sm-2 control-label">Subject</label>
+  <div class="col-sm-10">
+    <input [ngModel]="course?.subject" ngModel #first_name="ngModel" type="text" class="form-control" id="subject" name="subject"  placeholder="Subject" required>
+  </div>
+</div>
+<div class="form-group">
+  <label for="course" class="col-sm-2 control-label">Course</label>
+  <div class="col-sm-10">
+    <input [ngModel]="course?.course" ngModel #first_name="ngModel" type="text" class="form-control" id="course" name="course" placeholder="Course Name" required>
+  </div>
+</div>
+ <div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</form>
