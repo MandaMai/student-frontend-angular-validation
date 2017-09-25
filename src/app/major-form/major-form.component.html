@@ -1,34 +1,33 @@
-<ol class="breadcrumb">
-  <li><a routerLink="/home">Home</a></li>
-  <li><a routerLink="/major">Majors</a></li>
-  <li class="active">Manage Major</li>
-</ol>
-
-<br/>
-
-<a class="btn btn-primary" routerLink="/major">Return to Majors</a>
-
-<h1>Manage Major</h1>
-
-<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
-
-<form novalidate (ngSubmit)="saveMajor(majorForm)"  #majorForm="ngForm" class="form-horizontal">
-<input [ngModel]="major?.major_id" ngModel #major_id="ngModel" type="hidden" name="major_id">
-<div class="form-group">
-  <label for="major" class="col-sm-2 control-label">Major</label>
-  <div class="col-sm-10">
-    <input [ngModel]="major?.major" ngModel #first_name="ngModel" type="text" class="form-control" id="major" name="major" placeholder="Major Name" required>
+  <a class="btn btn-primary" routerLink="/major">Return to Majors</a>
+  
+  <h1>Manage Major</h1>
+  
+  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+  <form novalidate (ngSubmit)="saveMajor(majorForm)"  #majorForm="ngForm" class="form-horizontal">
+  <input [ngModel]="major?.major_id" ngModel #major_id="ngModel" type="hidden" name="major_id">
+  <div class="form-group">
+    <label for="major" class="col-sm-2 control-label">Major</label>
+    <div class="col-sm-10">
+      <input [ngModel]="major?.major" ngModel #first_name="ngModel" type="text" class="form-control" id="major" name="major" placeholder="Major Name" required minlength="2" maxlength="30">
+      <span *ngIf="formErrors.major" class="text-danger">
+          {{ formErrors.major }}
+      </span>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <label for="sat" class="col-sm-2 control-label">SAT</label>
-  <div class="col-sm-10">
-    <input [ngModel]="major?.sat" ngModel #first_name="ngModel" type="text" class="form-control" id="sat" name="sat"  placeholder="SAT Score" required>
+  <div class="form-group">
+    <label for="sat" class="col-sm-2 control-label">SAT</label>
+    <div class="col-sm-10">
+      <input [ngModel]="major?.sat" ngModel #first_name="ngModel" type="text" class="form-control" id="sat" name="sat"  placeholder="SAT Score" required pattern="([4-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1[0-5][0-9]{2}|1600)" maxlength="4">
+      <span *ngIf="formErrors.sat" class="text-danger">
+          {{ formErrors.sat }}
+      </span>
+    </div>
   </div>
-</div>
- <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-primary">Submit</button>
+   <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button [disabled]="!majorForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+    </div>
   </div>
-</div>
-</form>
+  </form>
+  

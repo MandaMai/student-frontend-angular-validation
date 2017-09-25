@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -54,4 +54,64 @@ export class MajorFormComponent implements OnInit {
 
   }
 
+
+  // Code Added for validation!!!!!
+  majorForm: NgForm;
+  @ViewChild('majorForm') currentForm: NgForm;
+
+  // onSubmit(data: NgForm) {
+  //   console.log(data.value);
+  //   // console.log(this.model);
+  // }
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    //if the form didn't change then do nothing
+    if (this.currentForm === this.majorForm) { return; }
+    //set the form to the current form for comparison
+    this.majorForm = this.currentForm;
+    //subscribe to form changes and send the changes to the onValueChanged method
+    this.majorForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.majorForm.form;
+
+    for (const field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }
+    }
+  }
+
+  //start out the errors as an emtpy string
+  formErrors = {
+    'major': '',
+    'sat':'',
+  };
+
+  validationMessages = {
+    'major': {
+      'required':      'major is required.',
+      'minlength':     'Name must be at least 2 characters long.',
+      'maxlength':     'Name can not be longer than 30 characters long.'
+    },
+    'sat': {
+      'required':      'SAT score is required.',
+      'maxlength':     'Number can not be more than four digits long',
+      'pattern':       'SAT score should be a number between 0-1600'
+    }
+
+  };
 }

@@ -18,27 +18,36 @@
     <label for="instructor_id" class="col-sm-2 control-label">Instructor ID</label>
     <div class="col-sm-10">
       <select [ngModel]="course?.instructor?.instructor_id" ngModel #instructor_id="ngModel" type="text" class="form-control" id="instructor_id" name="instructor_id">
-        <option *ngFor="let zeInstructor of instructors" value="{{zeInstructor.instructor_id}}">
+        <option *ngFor="let zeInstructor of instructors" value="{{zeInstructor.instructor_id}}" required>
           {{zeInstructor.first_name}}&nbsp;{{zeInstructor.last_name}}
         </option>
+        <span *ngIf="formErrors.instructor_id" class="text-danger">
+            {{ formErrors.instructor_id }}
+          </span>
       </select>
     </div>
   </div>
 <div class="form-group">
   <label for="subject" class="col-sm-2 control-label">Subject</label>
   <div class="col-sm-10">
-    <input [ngModel]="course?.subject" ngModel #first_name="ngModel" type="text" class="form-control" id="subject" name="subject"  placeholder="Subject" required>
+    <input [ngModel]="course?.subject" ngModel #first_name="ngModel" type="text" class="form-control" id="subject" name="subject"  placeholder="Subject" required minlength="2" maxlength="30">
+    <span *ngIf="formErrors.subject" class="text-danger">
+        {{ formErrors.subject }}
+      </span>
   </div>
 </div>
 <div class="form-group">
   <label for="course" class="col-sm-2 control-label">Course</label>
   <div class="col-sm-10">
-    <input [ngModel]="course?.course" ngModel #first_name="ngModel" type="text" class="form-control" id="course" name="course" placeholder="Course Name" required>
+    <input [ngModel]="course?.course" ngModel #first_name="ngModel" type="text" class="form-control" id="course" name="course" placeholder="Course Name" required minlength="3" maxlength="3">
+    <span *ngIf="formErrors.course" class="text-danger">
+        {{ formErrors.course }}
+      </span>
   </div>
 </div>
  <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="!classForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
 </form>

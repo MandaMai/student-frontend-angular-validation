@@ -1,11 +1,3 @@
-<ol class="breadcrumb">
-  <li><a routerLink="/home">Home</a></li>
-  <li><a routerLink="/assignment">Assignments</a></li>
-  <li class="active">Manage Assignment</li>
-</ol>
-
-<br/>
-
 <a class="btn btn-primary" routerLink="/assignment">Return to Assignments</a>
 
 <h1>Manage Assignment</h1>
@@ -21,6 +13,9 @@
         <option *ngFor="let zeStudent of students" value="{{zeStudent.student_id}}">
           {{zeStudent.first_name}}&nbsp;{{zeStudent.last_name}}
         </option>
+        <span *ngIf="formErrors.student_id" class="text-danger">
+            {{ formErrors.student_id }}
+          </span>
       </select>
     </div>
   </div>
@@ -28,6 +23,9 @@
   <label for="assignment_nbr" class="col-sm-2 control-label">Assignment Number</label>
   <div class="col-sm-10">
     <input [ngModel]="assignment?.assignment_nbr" ngModel #assignment_nbr="ngModel" type="text" class="form-control" id="assignment_nbr" name="assignment_nbr"  placeholder="Assignment Number" required>
+    <span *ngIf="formErrors.assignment_nbr" class="text-danger">
+        {{ formErrors.assignment_nbr }}
+      </span>
   </div>
 </div>
 <div class="form-group">
@@ -37,6 +35,9 @@
         <option *ngFor="let zeGrade of grades" value="{{zeGrade.grade_id}}">
           {{zeGrade.grade}}
         </option>
+        <span *ngIf="formErrors.grades_id" class="text-danger">
+            {{ formErrors.grade_id }}
+          </span>
       </select>
     </div>
   </div>
@@ -47,12 +48,15 @@
         <option *ngFor="let zeClass of classes" value="{{zeClass.class_id}}">
           {{zeClass.subject}}&nbsp;{{zeClass.course}}
         </option>
+        <span *ngIf="formErrors.class_id" class="text-danger">
+            {{ formErrors.class_id }}
+          </span>
       </select>
     </div>
   </div>
  <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="!assignmentForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
 </form>
