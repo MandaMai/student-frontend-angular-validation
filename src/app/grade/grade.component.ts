@@ -2,13 +2,15 @@ import { Component, OnInit,Input } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { DataService } from '../data.service'
-import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 
 @Component({
   selector: 'app-grade',
   templateUrl: './grade.component.html',
-  styleUrls: ['./grade.component.css']
+  styleUrls: ['./grade.component.css'],
+  animations: [fadeInAnimation]
 })
 export class GradeComponent implements OnInit {
 

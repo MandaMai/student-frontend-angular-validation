@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+* {
+    color: white;
+}
+section {
+    padding: 50px;
+}
 body {
     padding-top: 60px;
 }
@@ -19,13 +25,9 @@ table {
 
 tr, td, th {
     background-color: rgba(108, 122, 202, 0.15);
-    color: white;
 
 }
 
-h2 {
-    color: white;
-}
 
 body {
     background-image: url("https://cdn-images-1.medium.com/max/2000/1*DHUHHOxGgYXfHJtCyLiz5Q.jpeg");    
